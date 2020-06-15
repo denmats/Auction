@@ -1,13 +1,9 @@
 package com.denmats.auction2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@org.hibernate.annotations.Immutable
 public class Bid {
 
     @Id
@@ -16,13 +12,18 @@ public class Bid {
     private Double amount;
     private Date createdON;
 
+    @ManyToOne
+    private Item item;
+
+
     public Bid() {
     }
 
-    public Bid(Long id, Double amount, Date createdON) {
+    public Bid(Long id, Double amount, Date createdON, Item item) {
         this.id = id;
         this.amount = amount;
         this.createdON = createdON;
+        this.item = item;
     }
 
     public Long getId() {
@@ -35,5 +36,9 @@ public class Bid {
 
     public Date getCreatedON() {
         return createdON;
+    }
+
+    public Item getItem() {
+        return item;
     }
 }

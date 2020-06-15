@@ -1,10 +1,9 @@
 package com.denmats.auction2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -16,14 +15,20 @@ public class Item {
     private Double price;
     private Date auctionEnd;
 
-    public Item(Long id, String name, Double price, Date auctionEnd) {
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Bid> bids = new ArrayList<>();
+
+    public Item() {
+    }
+
+
+    public Item(Long id, String name, Double price, Date auctionEnd, List<Bid> bids) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.auctionEnd = auctionEnd;
-    }
-
-    public Item() {
+        this.bids = bids;
     }
 
     public Long getId() {
@@ -42,13 +47,7 @@ public class Item {
         return auctionEnd;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", auctionEnd=" + auctionEnd +
-                '}';
+    public List<Bid> getBids() {
+        return bids;
     }
 }

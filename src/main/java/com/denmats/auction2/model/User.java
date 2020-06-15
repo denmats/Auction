@@ -17,15 +17,15 @@ public class User {
     private String address;
     private String account;
 
+    public User() {
+    }
+
     public User(Long id, String name, String surname, String address, String account) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.account = account;
-    }
-
-    public User() {
     }
 
     public Long getId() {
@@ -46,16 +46,5 @@ public class User {
 
     public String getAccount() {
         return account;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", address='" + address + '\'' +
-                ", account='" + account + '\'' +
-                '}';
     }
 }

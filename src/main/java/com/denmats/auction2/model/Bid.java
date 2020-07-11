@@ -15,6 +15,9 @@ public class Bid {
     @ManyToOne
     private Item item;
 
+    @ManyToOne
+    private User user;
+
 
     public Bid() {
     }

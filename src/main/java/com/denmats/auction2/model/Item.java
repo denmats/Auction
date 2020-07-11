@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -17,7 +18,10 @@ public class Item {
 
     @OneToMany(cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Bid> bids = new ArrayList<>();
+    private List<Bid> item_bids = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "likedItems")
+    Set<User> likes;
 
     public Item() {
     }
@@ -28,7 +32,7 @@ public class Item {
         this.name = name;
         this.price = price;
         this.auctionEnd = auctionEnd;
-        this.bids = bids;
+        this.item_bids = item_bids;
     }
 
     public Long getId() {
@@ -48,6 +52,6 @@ public class Item {
     }
 
     public List<Bid> getBids() {
-        return bids;
+        return item_bids;
     }
 }

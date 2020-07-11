@@ -1,9 +1,9 @@
 package com.denmats.auction2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -16,6 +16,17 @@ public class User {
     private String surname;
     private String address;
     private String account;
+
+    @ManyToMany
+    @JoinTable(
+            name = "items_like",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    Set<Item> likedItems;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Bid> user_bids = new ArrayList<>();
 
     public User() {
     }

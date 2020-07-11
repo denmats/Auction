@@ -1,8 +1,6 @@
 package com.denmats.auction2.dao;
 
-import com.denmats.auction2.model.ItemBidMax;
 import com.denmats.auction2.model.UserBidItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +13,7 @@ public class UserBidItemDaoImpl {
     public UserBidItemDaoImpl(UserBidItemDao userBidItemDao) {
         this.userBidItemDao = userBidItemDao;
     }
+
 
     public List<UserBidItem> findUserMaxOfBidForItem(){
         return userBidItemDao.findUserMaxOfBidForItem();
